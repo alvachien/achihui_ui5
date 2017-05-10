@@ -1,51 +1,94 @@
 {
-  "_version": "1.1.0",
-  "sap.app": {
 	"_version": "1.1.0",
-	"id": "ac.hihui.ui5",
-	"type": "application",
-	"i18n": "i18n/i18n.properties",
-	"title": "{{appTitle}}",
-	"description": "{{appDescription}}",
-	"applicationVersion": {
-	  "version": "1.0.0"
-	}
-  },
-  "sap.ui": {
-	"_version": "1.1.0",
-	"technology": "UI5",
-	"deviceTypes": {
-	  "desktop": true,
-	  "tablet": true,
-	  "phone": true
-	},
-	"supportedThemes": [
-	  "sap_belize"
-	]
-  },
-  "sap.ui5": {
-	"_version": "1.1.0",
-	"rootView": "ac.hihui.ui5.view.App",
-	"dependencies": {
-	  "minUI5Version": "1.30",
-	  "libs": {
-		"sap.m": {}
-	  }
-	},
-	"models": {
-	  "i18n": {
-		"type": "sap.ui.model.resource.ResourceModel",
-		"settings": {
-		  "bundleName": "ac.hihui.ui5.i18n.i18n"
+	"sap.app": {
+		"_version": "1.1.0",
+		"id": "ac.hihui.ui5",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"ach": "CA-UI5-DOC",
+		"dataSources": {
+			"invoiceRemote": {
+				"uri": "https://services.odata.org/V2/Northwind/Northwind.svc/",
+				"uri_webide": "/destinations/northwind/V2/Northwind/Northwind.svc/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0"
+				}
+			}
 		}
-	  }
 	},
-	"resources": {
-	  "css": [
-		{
-		  "uri": "css/style.css"
+	"sap.ui": {
+		"_version": "1.1.0",
+		"technology": "UI5",
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": [
+			"sap_belize"
+		]
+	},
+	"sap.ui5": {
+		"_version": "1.1.0",
+		"rootView": "ac.hihui.ui5.view.App",
+		"dependencies": {
+			"minUI5Version": "1.30",
+			"libs": {
+				"sap.m": {}
+			}
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "ac.hihui.ui5.i18n.i18n"
+				}
+			},
+			"invoice": {
+				"dataSource": "invoiceRemote"
+			}
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"viewPath": "ac.hihui.ui5.view",
+				"controlId": "app",
+				"controlAggregation": "pages"
+			},
+			"routes": [
+				{
+					"pattern": "",
+					"name": "overview",
+					"target": "overview"
+				},
+				{
+					"pattern": "detail/{invoicePath}",
+					"name": "detail",
+					"target": "detail"
+				}
+			],
+			"targets": {
+				"overview": {
+					"viewName": "Overview"
+				},
+				"detail": {
+					"viewName": "Detail"
+				}
+			}
+		},
+		"resources": {
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
 		}
-	  ]
 	}
-  }
 }

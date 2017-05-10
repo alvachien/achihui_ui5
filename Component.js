@@ -1,8 +1,8 @@
 sap.ui.define([
     "sap/ui/core/UIComponent",
     "sap/ui/model/json/JSONModel",
-    "sap/ui/model/resource/ResourceModel"
-], function (UIComponent, JSONModel, ResourceModel) {
+    "ac/hihui/ui5/controller/HelloDialog"
+], function (UIComponent, JSONModel, HelloDialog) {
     "use strict";
     return UIComponent.extend("ac.hihui.ui5.Component", {
         metadata: {
@@ -26,6 +26,15 @@ sap.ui.define([
             //     bundleName: "ac.hihui.ui5.i18n.i18n"
             // });
             // this.setModel(i18nModel, "i18n");
+
+            // Dialog
+            this._helloDialog = new HelloDialog(this.getAggregation("rootControl"));
+
+            // create the views based on the url/hash
+			this.getRouter().initialize();
+        },
+        openHelloDialog: function() {
+            this._helloDialog.open();
         }
     });
 });

@@ -1,0 +1,16 @@
+<mvc:View
+	controllerName="ac.hihui.ui5.controller.Detail"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:wt="ac.hihui.ui5.control">
+	<Page
+		title="{i18n>detailPageTitle}"
+		showNavButton="true"
+		navButtonPress="onNavBack">
+		<ObjectHeader
+			title="Invoice"
+			intro="{invoice>ShipperName}"
+			title="{invoice>ProductName}" />
+		<wt:ProductRating class="sapUiSmallMarginBeginEnd" change="onRatingChange"/>
+	</Page>
+</mvc:View>
