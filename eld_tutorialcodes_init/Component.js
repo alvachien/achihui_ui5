@@ -1,8 +1,9 @@
 sap.ui.define([
     "sap/ui/core/UIComponent",
     "sap/ui/model/json/JSONModel",
-    "ac/hihui/ui5/controller/HelloDialog"
-], function (UIComponent, JSONModel, HelloDialog) {
+    "ac/hihui/ui5/controller/HelloDialog",
+	"sap/ui/Device"
+], function (UIComponent, JSONModel, HelloDialog, Device) {
     "use strict";
     return UIComponent.extend("ac.hihui.ui5.Component", {
         metadata: {
@@ -27,6 +28,11 @@ sap.ui.define([
             // });
             // this.setModel(i18nModel, "i18n");
 
+			// set device model
+			var oDeviceModel = new JSONModel(Device);
+			oDeviceModel.setDefaultBindingMode("OneWay");
+			this.setModel(oDeviceModel, "device");
+            
             // Dialog
             this._helloDialog = new HelloDialog(this.getAggregation("rootControl"));
 

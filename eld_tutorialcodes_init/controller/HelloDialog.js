@@ -9,7 +9,6 @@ sap.ui.define([
 			this._oView = oView;	
 		},
 
-
 		open : function () {
 			var oView = this._oView;
 			var oDialog = oView.byId("helloDialog");
